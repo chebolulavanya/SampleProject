@@ -61,6 +61,9 @@ import SampleDragDrop from './src/components/sampleDragDrop';
 import SampleScrollView from './src/components/sampleScrooView';
 import GridExample from './src/components/collectionView';
 import DraggableBoard from './src/components/draggableBoard';
+import TwillioCalling from './src/components/twilliocalling';
+import ChatApp from './src/components/ChatApp';
+import {initializeApp} from 'firebase/app';
 
 import { createNativeStackNavigator, NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { TabNavigationScreen } from './src/components/tabNavigation';
@@ -70,10 +73,24 @@ import { legacy_createStore as createStore } from 'redux';
 import DatePicker from 'react-native-date-picker';
 import {Calendar, LocaleConfig} from 'react-native-calendars';
 import ServieceHeaders from './src/utils/commonApi';
-import Login from './src/components/login';
+import Login from './src/components/HOC/login';
 import { AppProvider,AppConsumer} from './src/utils/appProvider';
 
 
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+      apiKey: "AIzaSyBRTf7LVJO1nSXID1HF9QwE3FyPOuv1-3s",
+      authDomain: "chatappv2-4f842.firebaseapp.com",
+      databaseURL: "https://chatappv2-4f842-default-rtdb.firebaseio.com",
+      projectId: "chatappv2-4f842",
+      storageBucket: "chatappv2-4f842.appspot.com",
+      messagingSenderId: "249467052721",
+      appId: "1:249467052721:web:ef0aa24af9d6fb088b7890"
+    };
+
+    // Initialize Firebase
+initializeApp(firebaseConfig);
 
 function App() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -257,7 +274,10 @@ function App() {
     // <QuoteApp></QuoteApp>
     // <DraggableView></DraggableView>
     // <DraggableBlob></DraggableBlob>
-    <DraggableBoard></DraggableBoard>
+    // <DraggableBoard></DraggableBoard>
+    // <TwillioCalling></TwillioCalling>
+    <ChatApp></ChatApp>
+
     // </View>
      
   );
