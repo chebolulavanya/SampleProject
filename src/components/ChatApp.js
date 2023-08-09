@@ -29,6 +29,7 @@ export default function ChatApp() {
 
       //create a new user if not registered
       if (user) {
+        console.log(user);
         setMyData(user);
       } else {
         const newUserObj = {

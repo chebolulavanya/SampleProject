@@ -275,8 +275,8 @@ function App() {
     // <DraggableView></DraggableView>
     // <DraggableBlob></DraggableBlob>
     // <DraggableBoard></DraggableBoard>
-    // <TwillioCalling></TwillioCalling>
-    <ChatApp></ChatApp>
+    <TwillioCalling></TwillioCalling>
+    // <ChatApp></ChatApp>
 
     // </View>
      

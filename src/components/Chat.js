@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 import { Image, Pressable, StyleSheet, Text, View, ActionSheetIOS, ImageBackground } from 'react-native';
-import { getDatabase, get, ref, onValue, off, update } from 'firebase/database';
+import { getDatabase, get, ref, onValue, off, update,limitToLast,startAt,startAfter, limitToFirst } from 'firebase/database';
 // import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-crop-picker';
 import { FileReference } from './uploadData';
 import { getStorage, ref as dataRef, getDownloadURL, uploadBytes } from "firebase/storage";
-import { collection, addDoc, query, orderBy, onSnapshot, setDoc } from 'firebase/firestore';
+import { collection, addDoc, query, orderBy, onSnapshot, setDoc , limit as dataLimit} from 'firebase/firestore';
 import { db, appnew } from './firebase';
 import * as FileSystem from 'expo-file-system';
 import uuid from 'react-native-uuid';
@@ -38,17 +38,17 @@ export default function Chat({ onBack, myData, selectedUser }) {
     loadData();
 
     // set chatroom change listener
-    const database = getDatabase();
-    const chatroomRef = ref(database, `chatrooms/${selectedUser.chatroomId}`);
-    onValue(chatroomRef, snapshot => {
-      const data = snapshot.val();
-      setMessages(renderMessages(data.messages));
-    });
+    // const database = getDatabase();
+    // const chatroomRef = ref(database, `chatrooms/${selectedUser.chatroomId}`);
+    // onValue(chatroomRef, snapshot => {
+    //   const data = snapshot.val();
+    //   setMessages(renderMessages(data.messages));
+    // });
 
-    return () => {
-      //remove chatroom listener
-      off(chatroomRef);
-    };
+    // return () => {
+    //   //remove chatroom listener
+    //   off(chatroomRef);
+    // };
   }, [fetchMessages, renderMessages, selectedUser.chatroomId]);
 
   const renderMessages = useCallback(
@@ -92,15 +92,41 @@ export default function Chat({ onBack, myData, selectedUser }) {
     ],
   );
 
+  // const fetchMessages = useCallback(async () => {
+  //   const database = getDatabase();
+
+  //   const snapshot = await get(
+  //     ref(database, `chatrooms/${selectedUser.chatroomId}`),
+  //   );
+
+  //   return snapshot.val();
+  // }, [selectedUser.chatroomId]);
+
+
   const fetchMessages = useCallback(async () => {
-    const database = getDatabase();
+        const database = getDatabase();
 
-    const snapshot = await get(
-      ref(database, `chatrooms/${selectedUser.chatroomId}`),
-    );
-
-    return snapshot.val();
-  }, [selectedUser.chatroomId]);
+        // const snapshot = await get(
+        //   ref(database, `chatrooms/${selectedUser.chatroomId}`),
+        // );
+        // console.log("snapshot",snapshot)
+    
+    
+        // const snapshot = query(ref(database, `chatrooms/${selectedUser.chatroomId}`).orderByChild('createdAt').limitToLast(10));
+        const test = query(ref(database, `chatrooms/${selectedUser.chatroomId}`,dataLimit(2)));
+        const value = get(test).then((snapshot) => {
+            console.log(snapshot.val())
+          return snapshot.val();
+          // snapshot.forEach((child) => {
+          //   console.log("class",child.val());
+          // });
+        });
+        // console.log("snapshot1",snapshot1)
+        // return snapshot.val();
+        // console.log(snapshot.val())
+        // console.log(value)
+        return value;
+      }, [selectedUser.chatroomId]);
 
   const onSend = useCallback(
     async (msg = []) => {

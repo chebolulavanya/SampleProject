@@ -489,14 +489,14 @@ PODS:
     - React-Core
   - RNSoundPlayer (0.13.2):
     - React-Core
-  - RNTwilioVoice (4.4.0):
-    - React-Core
-    - TwilioVoice (~> 5.2.0)
   - RNVectorIcons (9.2.0):
     - React-Core
   - SocketRocket (0.6.0)
   - TOCropViewController (2.6.1)
-  - TwilioVoice (5.2.1)
+  - twilio-voice-react-native (1.0.0-beta.2):
+    - React-Core
+    - TwilioVoice (= 6.5.2)
+  - TwilioVoice (6.5.2)
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -577,8 +577,8 @@ DEPENDENCIES:
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSnackbar (from `../node_modules/react-native-snackbar`)
   - RNSoundPlayer (from `../node_modules/react-native-sound-player`)
-  - RNTwilioVoice (from `../node_modules/react-native-twilio-programmable-voice`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
+  - "twilio-voice-react-native (from `../node_modules/@twilio/voice-react-native-sdk`)"
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -702,10 +702,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-snackbar"
   RNSoundPlayer:
     :path: "../node_modules/react-native-sound-player"
-  RNTwilioVoice:
-    :path: "../node_modules/react-native-twilio-programmable-voice"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
+  twilio-voice-react-native:
+    :path: "../node_modules/@twilio/voice-react-native-sdk"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -773,11 +773,11 @@ SPEC CHECKSUMS:
   RNScreens: d3675ab2878704de70c9dae57fa5d024802404cc
   RNSnackbar: 3727b42bf6c4314a53c18185b5203e915a4ab020
   RNSoundPlayer: 369105c565b8fe6ea0a43fc882dc81eba444e842
-  RNTwilioVoice: c7daa56ef4b53298b084d699618d344c8fa99f04
   RNVectorIcons: fcc2f6cb32f5735b586e66d14103a74ce6ad61f8
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
-  TwilioVoice: 99f69686a0962873114534ce561436117ed9ea35
+  twilio-voice-react-native: a589852e6b741ed6552ae431893cca4f0fc6e70a
+  TwilioVoice: e83f262f928c86a50a7ba978b26239f43af48126
   Yoga: e7ea9e590e27460d28911403b894722354d73479
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
