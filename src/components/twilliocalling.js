@@ -3,6 +3,7 @@ import { Platform, StyleSheet, Text, View, TouchableOpacity, PermissionsAndroid,
 import TwilioVoice from 'react-native-twilio-programmable-voice';
 import ServieceHeaders from '../utils/commonApi';
 import RNCallKeep from 'react-native-callkeep';
+import Sound from 'react-native-sound';
 
 
 const options = {
@@ -25,6 +26,8 @@ const options = {
       }, 
     }
   };
+
+  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzkzMmY4OTEzODJmYjJkMDIyYTdiNDhhZWVmZTFmOTViLTE2OTIwMDk2OTQiLCJncmFudHMiOnsiaWRlbnRpdHkiOiIrMTQ3MDQ2NjY1OTYiLCJ2b2ljZSI6eyJvdXRnb2luZyI6eyJhcHBsaWNhdGlvbl9zaWQiOiJBUGYwZWI2NjRlYjBmZWYwMjZhMTYxZWRmMTdjOWU2Y2ZmIn19fSwiaWF0IjoxNjkyMDA5Njk0LCJleHAiOjE2OTIwMTMyOTQsImlzcyI6IlNLOTMyZjg5MTM4MmZiMmQwMjJhN2I0OGFlZWZlMWY5NWIiLCJzdWIiOiJBQzYzZGQ3NWFlYTYxZTk5MDQyMTg4YzUyOTQ5NzllZDFjIn0.TCnNQhPzkKwU0YAnu5-klaSFy9EbN4lLuo7AmooWxA0";
 export default class TwillioCalling extends Component {
     state = {
         twilioInited: false,
@@ -69,7 +72,7 @@ export default class TwillioCalling extends Component {
             await this.getMicrophonePermission();
         }
 
-        await TwilioVoice.initWithToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzJmZmU3ZDY4M2JhNjYxOTUwNjUzMGM2OWJhZGY4ZDVkIiwiZXhwIjoxNjkwMjA4NjM2LCJqdGkiOiJTSzJmZmU3ZDY4M2JhNjYxOTUwNjUzMGM2OWJhZGY4ZDVkLTE2OTAyMDUwMzYiLCJzdWIiOiJBQ2I3YzIyNDBmNzA2NzdmZTdmMWNkNmYwZjFjODY5NTQxIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiMjMwMjgwNGItZThjMC00YTQ2LTkxNmMtZjRkM2M5ZDliZDIwIiwidm9pY2UiOnsib3V0Z29pbmciOnsiYXBwbGljYXRpb25fc2lkIjoiQVAyNzZiZjM2MGEzMDA5NjE1YWViODEyMTA5NjA1YjNjNSJ9fX19.cUW3e7oBg4tW5ZBNvpcl_sfRranpPTVtONtzSFOANG8");
+        await TwilioVoice.initWithToken(token);
 
         TwilioVoice.addEventListener('deviceReady', () => {
             this.setState({ twilioInited: true, indicator: false , callStatus:'deviceReady'});
@@ -101,7 +104,7 @@ export default class TwillioCalling extends Component {
     initTelephony = async () => {
         try {
             // const accessToken = await getAccessTokenFromServer()
-            const success = await TwilioVoice.initWithToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJpc3MiOiJTSzJmZmU3ZDY4M2JhNjYxOTUwNjUzMGM2OWJhZGY4ZDVkIiwiZXhwIjoxNjkwMTkzNDc5LCJqdGkiOiJTSzJmZmU3ZDY4M2JhNjYxOTUwNjUzMGM2OWJhZGY4ZDVkLTE2OTAxODk4NzkiLCJzdWIiOiJBQ2I3YzIyNDBmNzA2NzdmZTdmMWNkNmYwZjFjODY5NTQxIiwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiMjMwMjgwNGItZThjMC00YTQ2LTkxNmMtZjRkM2M5ZDliZDIwIiwidm9pY2UiOnsib3V0Z29pbmciOnsiYXBwbGljYXRpb25fc2lkIjoiQVAyNzZiZjM2MGEzMDA5NjE1YWViODEyMTA5NjA1YjNjNSJ9fX19.HsvDM5sg9mCyG4fukSCEWO8LVnYNiR2PzI9OdUNwdP4")
+            const success = await TwilioVoice.initWithToken(token)
         } catch (err) {
             console.log('error occured')
             console.err(err)
@@ -111,7 +114,7 @@ export default class TwillioCalling extends Component {
     makeCall = () => {
         let val = '+91' + this.state.inputValue
         console.log(val)
-        TwilioVoice.connect({ To: val })
+        TwilioVoice.connect({ "To": val })
         TwilioVoice.addEventListener('connectionDidConnect', () => {
             console.log('is connected')
             this.setState({callStatus:'connectionDidConnect' })
@@ -127,8 +130,9 @@ export default class TwillioCalling extends Component {
             this.setState({callStatus:'connectionDidReconnect' })
         })
 
-        TwilioVoice.addEventListener('connectionDidDisconnect', () => {
+        TwilioVoice.addEventListener('connectionDidDisconnect', (error) => {
             console.log('is connectionDidDisconnect')
+            console.log('error is', error)
             this.setState({callStatus:'connectionDidDisconnect' })
             TwilioVoice.disconnect();
             this.setState({ twilioInited: false });

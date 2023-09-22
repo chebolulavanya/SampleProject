@@ -75,6 +75,9 @@ import {Calendar, LocaleConfig} from 'react-native-calendars';
 import ServieceHeaders from './src/utils/commonApi';
 import Login from './src/components/HOC/login';
 import { AppProvider,AppConsumer} from './src/utils/appProvider';
+import CheckboxTreeScreen from './src/components/checkBoxScreen';
+import MultiDropDown from './src/components/multiDropDown';
+import CommunicationPannel from './src/components/CommunicationPannel';
 
 
 
@@ -88,6 +91,432 @@ import { AppProvider,AppConsumer} from './src/utils/appProvider';
       messagingSenderId: "249467052721",
       appId: "1:249467052721:web:ef0aa24af9d6fb088b7890"
     };
+
+    const dropDownData = [{
+      "code": 200,
+      "data": [
+        {
+          "id": 118,
+          "name": "INDIA",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "HH:mm",
+          "language": "xx",
+          "parentRegionId": 0,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 428,
+          "name": "North-1",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 118,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 429,
+          "name": "North-2",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 118,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 430,
+          "name": "EAST",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 118,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 431,
+          "name": "CENTRAL",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 118,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 432,
+          "name": "South",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 118,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 433,
+          "name": "WEST",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 118,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 434,
+          "name": "EUP",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 435,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 435,
+          "name": "WUP",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 428,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 436,
+          "name": "UK",
+          "isDefaultUserRegion": true,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 428,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 437,
+          "name": "Delhi",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 428,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 438,
+          "name": "Rajasthan",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 428,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 439,
+          "name": "Chandigarh",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 429,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 440,
+          "name": "Himachal Pradesh",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 439,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 441,
+          "name": "Haryana",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 429,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 442,
+          "name": "Jammu & Kashmir",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 429,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 443,
+          "name": "Punjab",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 429,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 444,
+          "name": "West Bengal",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 430,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 445,
+          "name": "Odisha",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 430,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 446,
+          "name": "Assam",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 430,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 447,
+          "name": "Bihar",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 430,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 448,
+          "name": "Jharkhand",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 430,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 449,
+          "name": "ROM (Pune)",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 451,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 450,
+          "name": "Mumbai",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 433,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 451,
+          "name": "Nagpur",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 433,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 452,
+          "name": "Gujarat",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 433,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 453,
+          "name": "Goa - Corlim",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 431,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 454,
+          "name": "CG",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "HH:mm",
+          "language": "xx",
+          "parentRegionId": 431,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 455,
+          "name": "MP",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 431,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 456,
+          "name": "Karnataka",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 432,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 457,
+          "name": "Kerala",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 432,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 458,
+          "name": "Andhra Pradesh",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 432,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 459,
+          "name": "Telangana",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 432,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 460,
+          "name": "TN-1",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 461,
+          "autosavetimelimit": 900000
+        },
+        {
+          "id": 461,
+          "name": "TN-2",
+          "isDefaultUserRegion": false,
+          "isLaunch": false,
+          "timezone": "UTC +5:30",
+          "dateformat": "dd/MM/yyyy",
+          "timeformat": "hh:mm a",
+          "language": "xx",
+          "parentRegionId": 432,
+          "autosavetimelimit": 900000
+        }
+      ]
+    }];
 
     // Initialize Firebase
 initializeApp(firebaseConfig);
@@ -276,7 +705,13 @@ function App() {
     // <DraggableBlob></DraggableBlob>
     // <DraggableBoard></DraggableBoard>
     // <TwillioCalling></TwillioCalling>
-    <ChatApp></ChatApp>
+    // <ChatApp></ChatApp>
+    // <CheckboxTreeScreen></CheckboxTreeScreen>
+    // <MultiDropDown data={dropDownData[0].data} onPress={(item) =>{
+    //   console.log('selected item is here',item);
+    // }}></MultiDropDown>
+    <CommunicationPannel></CommunicationPannel>
+    // <CheckboxTreeScreen></CheckboxTreeScreen>
 
     // </View>
      
